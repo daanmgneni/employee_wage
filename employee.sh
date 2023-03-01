@@ -1,3 +1,4 @@
+  GNU nano 7.1                      employee.sh
 #To calculate the daily wage of an employee.
 
 
@@ -18,5 +19,4 @@ salary=$(( emp_hours * wage_per_hour ))
 echo "Employee is present and daily wage is $salary"
 else
 salary=0
-"Employee is absent and daily wage is $salary"
-fi
+

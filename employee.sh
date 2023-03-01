@@ -1,5 +1,4 @@
-#Calculate wages till a condition of total working hours or days is reached for a month 
-
+#Refactoring the code and writing the function to get the work hours of the employee.
 
 
 #! /bin/bash -x
@@ -15,31 +14,40 @@ total_working_days=20
 total_work_hour=0
 day=1
 
+# function to get the work hours of the employee
+function get_work_hours()
+{
+local random_check=$1
+local emp_hours=0
+
+#selection
+case $random_check in
+$is_present_full_time)
+emp_hours=8
+;;
+$is_present_part_time)
+emp_hours=4
+;;
+*)
+emp_hours=0
+;;
+
+esac
+echo $emp_hours
+}
+
+
 #Loop will execute till both the condition is TRUE
 while (($day <= $total_working_days && $total_work_hour <= $max_work_hour ))
 do
 #variable
 random_check=$((RANDOM%3)) # 0/1/2
 
-#selection
-case $random_check in
-$is_present_full_time)
-emp_hours=8
-echo " Employee is present for full time"
-;;
-$is_present_part_time)
-emp_hours=4
-echo " Employee is present for part time"
-;;
-*)
-emp_hours=0
-echo " Employee is absent"
-;;
+#calling the function and passing the argument
+emp_hours=$(get_work_hours $random_check)
 
-esac
+total_work_hour=$(($total_work_hour + $emp_hours))
 ((day++))
-
-total_work_hour=$(( $total_work_hour + $emp_hours ))
 
 done
 
